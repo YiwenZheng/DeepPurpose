@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+import sys
+sys.path.append("..")
+
 import torch
 from torch.autograd import Variable
 import torch.nn.functional as F
@@ -23,8 +26,8 @@ from prettytable import PrettyTable
 
 import os
 
-from utils import *
-from model_helper import Encoder_MultipleLayers, Embeddings    
+from DeepPurpose.utils import *
+from DeepPurpose.model_helper import Encoder_MultipleLayers, Embeddings    
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 

@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+import sys
+sys.path.append("..")
+
 import torch
 from torch.autograd import Variable
 import torch.nn.functional as F
@@ -21,9 +26,9 @@ from prettytable import PrettyTable
 
 import os
 
-from utils import *
-from model_helper import Encoder_MultipleLayers, Embeddings        
-from encoders import *
+from DeepPurpose.utils import *
+from DeepPurpose.model_helper import Encoder_MultipleLayers, Embeddings        
+from DeepPurpose.encoders import *
 
 from torch.utils.tensorboard import SummaryWriter
 
