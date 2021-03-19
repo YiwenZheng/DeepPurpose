@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
+
 import pandas as pd
 import numpy as np
 import wget
 from zipfile import ZipFile
-from DeepPurpose.utils import *
+from utils import *
 import json
 import os
 
