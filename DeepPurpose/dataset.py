@@ -320,7 +320,7 @@ def load_process_KIBA(path = './data', binary = False, threshold = 9):
 	#with ZipFile(saved_path, 'r') as zip:
 	    #zip.extractall(path = path)
 
-	affinity = pd.read_csv(path + '/KIBA/affinity.txt', header=None, sep = '\t')
+	affinity = pd.read_csv(path + '/KIBA/affinity.txt', header = None, sep = '\t')
 	affinity = affinity.fillna(-1)
 
 	with open(path + '/KIBA/target_seq.txt') as f:

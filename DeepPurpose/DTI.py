@@ -28,7 +28,7 @@ import os
 
 from DeepPurpose.utils import *
 from DeepPurpose.model_helper import Encoder_MultipleLayers, Embeddings        
-from DeepPurpose.encoders import *
+from DeepPurpose.encoders import CNN, CNN_RNN, MLP, MPNN, transformer
 
 from torch.utils.tensorboard import SummaryWriter
 
@@ -56,7 +56,7 @@ class Classifier(nn.Sequential):
 		# concatenate and classify
 		v_f = torch.cat((v_D, v_P), 1)
 		for i, l in enumerate(self.predictor):
-			if i==(len(self.predictor)-1):
+			if i == (len(self.predictor)-1):
 				v_f = l(v_f)
 			else:
 				v_f = F.relu(self.dropout(l(v_f)))

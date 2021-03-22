@@ -241,6 +241,7 @@ class MLP(nn.Sequential):
 			v = F.relu(l(v))
 		return v  
 
+
 class MPNN(nn.Sequential):
 
 	def __init__(self, mpnn_hidden_size, mpnn_depth):
