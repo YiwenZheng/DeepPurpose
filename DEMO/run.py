@@ -8,12 +8,19 @@ import argparse
 #添加argparse
 parser = argparse.ArgumentParser()  #创建一个解析对象
 #向该对象中添加命令行参数和选项
-parser.add_argument("--drug_encoding", type = str, required = False)  #药物编码器
-parser.add_argument("--target_encoding", type = str, required = False)  #靶蛋白编码器
+parser.add_argument("--dataset", type = str, required = True)  #数据集
+parser.add_argument("--drug_encoding", type = str, required = True)  #药物编码器
+parser.add_argument("--target_encoding", type = str, required = True)  #靶蛋白编码器
 args = parser.parse_args()
 
 #加载数据
-X_drug, X_target, y = dataset.load_process_DAVIS('/y/home/zyw/tmp/DeepPurpose/data/', binary = False)
+if args.dataset == "Davis":
+    X_drug, X_target, y = dataset.load_process_DAVIS('/y/home/zyw/tmp/DeepPurpose/data/', binary = False)
+elif args.dataset == "Kiba":
+    X_drug, X_target, y = dataset.load_process_KIBA('/y/home/zyw/tmp/DeepPurpose/data/', binary = False)
+else:
+    print("Don't exist such a dataset. Please try again.")
+    sys.exit()  #提前结束进程
 
 #设置编码器
 drug_encoding = args.drug_encoding
