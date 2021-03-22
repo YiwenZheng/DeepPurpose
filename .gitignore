@@ -6,7 +6,7 @@ __pycache__/
 
 data/
 
-save_folder/
+save_model/
 
 result/
 
@@ -17,3 +17,7 @@ aicures_data/
 Ax_output/
 
 model/
+
+runs/
+
+.vscode/
