@@ -262,17 +262,17 @@ def process_BindingDB(path = None, df = None, y = 'Kd', binary = False, convert_
 def load_process_DAVIS(path = './data', binary = False, convert_to_log = True, threshold = 30):
 	print('Beginning Processing...')
 
-	if not os.path.exists(path):
-	    os.makedirs(path)
+	#if not os.path.exists(path):
+	    #os.makedirs(path)
 
-	url = 'https://drive.google.com/uc?export=download&id=14h-0YyHN8lxuc0KV3whsaSaA-4KSmiVN'
-	saved_path = wget.download(url, path)
+	#url = 'https://drive.google.com/uc?export=download&id=14h-0YyHN8lxuc0KV3whsaSaA-4KSmiVN'
+	#saved_path = wget.download(url, path)
 
-	print('Beginning to extract zip file...')
-	with ZipFile(saved_path, 'r') as zip:
-	    zip.extractall(path = path)
+	#print('Beginning to extract zip file...')
+	#with ZipFile(saved_path, 'r') as zip:
+	    #zip.extractall(path = path)
 
-	affinity = pd.read_csv(path + '/DAVIS/affinity.txt', header=None, sep = ' ')
+	affinity = pd.read_csv(path + '/DAVIS/affinity.txt', header = None, sep = ' ')
 
 	with open(path + '/DAVIS/target_seq.txt') as f:
 		target = json.load(f)
