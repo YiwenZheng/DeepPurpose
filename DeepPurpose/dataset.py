@@ -259,6 +259,7 @@ def process_BindingDB(path = None, df = None, y = 'Kd', binary = False, convert_
 
 	return df_want.SMILES.values, df_want['Target Sequence'].values, np.array(y)
 
+
 def load_process_DAVIS(path = './data', binary = False, convert_to_log = True, threshold = 30):
 	print('Beginning Processing...')
 
@@ -305,9 +306,9 @@ def load_process_DAVIS(path = './data', binary = False, convert_to_log = True, t
 	print('Done!')
 	return np.array(SMILES), np.array(Target_seq), np.array(y)
 
+
 def load_process_KIBA(path = './data', binary = False, threshold = 9):
 	print('Beginning Processing...')
-
 
 	#if not os.path.exists(path):
 	    #os.makedirs(path)
