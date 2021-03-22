@@ -14,7 +14,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from time import time
+from time import time, sleep
 from sklearn.metrics import mean_squared_error, roc_auc_score, average_precision_score, f1_score, log_loss
 from lifelines.utils import concordance_index
 from scipy.stats import pearsonr
@@ -421,7 +421,8 @@ class DBTA:
 		writer = SummaryWriter()
 		t_start = time() 
 		iteration_loss = 0
-		for epo in range(train_epoch):
+		for epo in tqdm(range(train_epoch)):
+			sleep(0.05)
 			for i, (v_d, v_p, label) in enumerate(training_generator):
 				if self.target_encoding == 'Transformer':
 					v_p = v_p
