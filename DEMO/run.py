@@ -16,13 +16,8 @@ args = parser.parse_args()
 X_drug, X_target, y = dataset.load_process_DAVIS('/y/home/zyw/tmp/DeepPurpose/data/', binary = False)
 
 #设置编码器
-    from DeepPurpose import DTI
-    drug_encoding = args.drug_encoding
-    target_encoding = args.target_encoding
-elif args.model == "DDI":
-    from DeepPurpose import DDI
-    drug_encoding = args.drug_encoding
-    target_encoding = args.target_encoding
+drug_encoding = args.drug_encoding
+target_encoding = args.target_encoding
 
 #分割训练集、验证集和测试集
 train, val, test = utils.data_process(X_drug, X_target, y, 
