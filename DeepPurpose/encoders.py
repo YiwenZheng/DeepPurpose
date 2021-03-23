@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from time import time
-from sklearn.metrics import mean_squared_error, roc_auc_score, average_precision_score, f1_score, log_loss
+from sklearn.metrics import average_precision_score, f1_score, log_loss, mean_squared_error, roc_auc_score
 from lifelines.utils import concordance_index
 from scipy.stats import pearsonr
 import pickle 
@@ -26,8 +26,8 @@ from prettytable import PrettyTable
 
 import os
 
-from DeepPurpose.utils import *
-from DeepPurpose.model_helper import Encoder_MultipleLayers, Embeddings    
+from DeepPurpose.utils import index_select_ND
+from DeepPurpose.model_helper import Embeddings, Encoder_MultipleLayers
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -314,14 +314,5 @@ class MPNN(nn.Sequential):
 		output = [torch.mean(atom_hiddens.narrow(0, sts,leng), 0) for sts,leng in N_atoms_scope]
 		output = torch.stack(output, 0)
 		return output 
-
-
-
-
-
-
-
-
-
 
 
