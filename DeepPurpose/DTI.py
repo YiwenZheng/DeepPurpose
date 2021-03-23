@@ -421,8 +421,7 @@ class DBTA:
 		writer = SummaryWriter()
 		t_start = time() 
 		iteration_loss = 0
-		for epo in tqdm(range(train_epoch)):
-			sleep(0.05)
+		for epo in range(train_epoch):
 			for i, (v_d, v_p, label) in enumerate(training_generator):
 				if self.target_encoding == 'Transformer':
 					v_p = v_p
