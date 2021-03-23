@@ -27,7 +27,7 @@ from prettytable import PrettyTable
 import os
 
 from DeepPurpose.utils import convert_y_unit, data_process_loader, data_process_repurpose_virtual_screening, \
-	download_pretrained_model, load_dict, mpnn_collate_func
+	download_pretrained_model, load_dict, mpnn_collate_func, save_dict
 from DeepPurpose.encoders import CNN, CNN_RNN, MLP, MPNN, transformer
 
 from torch.utils.tensorboard import SummaryWriter
