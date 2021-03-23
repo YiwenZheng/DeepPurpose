@@ -26,7 +26,7 @@ from prettytable import PrettyTable
 
 import os
 
-from DeepPurpose.utils import index_select_ND
+from DeepPurpose.utils import create_var, index_select_ND
 from DeepPurpose.model_helper import Embeddings, Encoder_MultipleLayers
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
