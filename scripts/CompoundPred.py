@@ -26,7 +26,7 @@ from prettytable import PrettyTable
 
 import os
 
-from scripts.utils import convert_y_unit, mpnn_collate_func
+from scripts.utils import convert_y_unit, data_process_loader_Property_Prediction, mpnn_collate_func
 from scripts.model_helper import Embeddings, Encoder_MultipleLayers
 from scripts.encoders import CNN, CNN_RNN, MLP, MPNN, transformer
 
