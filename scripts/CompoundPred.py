@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+import sys
+sys.path.append("..")
+
 import torch
 from torch.autograd import Variable
 import torch.nn.functional as F
@@ -10,7 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from time import time
-from sklearn.metrics import mean_squared_error, roc_auc_score, average_precision_score, f1_score
+from sklearn.metrics import average_precision_score, f1_score, mean_squared_error, roc_auc_score
 from lifelines.utils import concordance_index
 from scipy.stats import pearsonr
 import pickle 
@@ -21,10 +26,10 @@ from prettytable import PrettyTable
 
 import os
 
-from DeepPurpose.utils import *
-from DeepPurpose.model_helper import Encoder_MultipleLayers, Embeddings    
-#from DeepPurpose.models import transformer, CNN, CNN_RNN, MLP, MPNN
-from DeepPurpose.encoders import *
+#from scripts.utils import *
+from scripts.model_helper import Embeddings, Encoder_MultipleLayers
+#from scripts.models import transformer, CNN, CNN_RNN, MLP, MPNN
+#from scripts.encoders import *
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
