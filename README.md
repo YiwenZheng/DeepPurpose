@@ -636,4 +636,8 @@ https://deeppurpose.readthedocs.io is under active development.
 ## Disclaimer
 The output list should be inspected manually by experts before proceeding to the wet-lab validation, and our work is still in active developement with limitations, please do not directly use the drugs.
 
-
+## Baseline
+Train a DeepPurpose model with dataset of Davis. Drug encoding and target encoding are both CNN.
+```bash
+./train.py -i "/y/home/zyw/tmp/DeepPurpose/data/DAVIS" -d_e "CNN" -t_e "CNN" --train_epoch 100 -o "/y/home/zyw/tmp/DeepPurpose/save_model/model_CNN_CNN_Davis"
+```
