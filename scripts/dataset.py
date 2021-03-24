@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 import wget
 from zipfile import ZipFile
-from DeepPurpose.utils import convert_y_unit
+from scripts.utils import convert_y_unit
 import json
 import os
 

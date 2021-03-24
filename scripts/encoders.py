@@ -26,8 +26,8 @@ from prettytable import PrettyTable
 
 import os
 
-from DeepPurpose.utils import create_var, index_select_ND
-from DeepPurpose.model_helper import Embeddings, Encoder_MultipleLayers
+from scripts.utils import create_var, index_select_ND
+from scripts.model_helper import Embeddings, Encoder_MultipleLayers
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -248,7 +248,7 @@ class MPNN(nn.Sequential):
 		super(MPNN, self).__init__()
 		self.mpnn_hidden_size = mpnn_hidden_size
 		self.mpnn_depth = mpnn_depth 
-		from DeepPurpose.chemutils import ATOM_FDIM, BOND_FDIM
+		from scripts.chemutils import ATOM_FDIM, BOND_FDIM
 
 		self.W_i = nn.Linear(ATOM_FDIM + BOND_FDIM, self.mpnn_hidden_size, bias=False)
 		self.W_h = nn.Linear(self.mpnn_hidden_size, self.mpnn_hidden_size, bias=False)
