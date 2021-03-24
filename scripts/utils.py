@@ -17,7 +17,7 @@ try:
 	from descriptastorus.descriptors import rdDescriptors, rdNormalizedDescriptors
 except:
 	raise ImportError("Please install pip install git+https://github.com/bp-kelley/descriptastorus and pip install pandas-flavor")
-from srcipts.chemutils import get_mol, atom_features, bond_features, MAX_NB, ATOM_FDIM, BOND_FDIM
+from scripts.chemutils import get_mol, atom_features, bond_features, MAX_NB, ATOM_FDIM, BOND_FDIM
 from subword_nmt.apply_bpe import BPE
 import codecs
 import pickle
