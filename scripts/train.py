@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-import sys
-sys.path.append("..")
-from scripts import utils,dataset,DTI
+import utils,dataset,DTI
 from argparse import ArgumentParser
 
 def get_parser():
     parser = ArgumentParser()
     parser.add_argument("-i", "--input_file", type = str, required = True, help = "Path to data file")
+    parser.add_argument("-o", "--output_dir", type = str, required = True,\
+        help = "Directory where model will be saved")
     # generate_config
     parser.add_argument("-d_e", "--drug_encoding", type = str, default = None, required = True,\
         help = "Drug encoding")
@@ -70,13 +70,13 @@ def get_parser():
     parser.add_argument("--cnn_target_kernels", type = list, default = [4,8,12], required = False,\
         help = "Kernels of target in CNN") 
     parser.add_argument("--rnn_Use_GRU_LSTM_drug", type = str, default = "GRU", required = False,\
-        help = "Drug use GRU or LSTM in RNN) 
+        help = "Drug use GRU or LSTM in RNN") 
     parser.add_argument("--rnn_drug_hid_dim", type = int, default = 64, required = False,\
         help = "Dimensionality of hidden layers of drug in RNN")
     parser.add_argument("--rnn_drug_n_layers", type = int, default = 2, required = False,\
         help = "Number of layers of drug in RNN") 
     parser.add_argument("--rnn_drug_bidirectional", type = bool, default = True, required = False,\
-        help = "Whether bidirectional of drug in RNN")) 
+        help = "Whether bidirectional of drug in RNN")
     parser.add_argument("--rnn_Use_GRU_LSTM_target", type = str, default = "GRU", required = False,\
         help = "Target use GRU or LSTM in RNN") 
     parser.add_argument("--rnn_target_hid_dim", type = int, default = 64, required = False,\
@@ -92,7 +92,7 @@ def get_parser():
 
 def main(config):
     #加载数据
-    X_drug, X_target, y = dataset.read_file_training_dataset_drug_target_pairs('config.input_file')
+    X_drug, X_target, y = dataset.load_process(config.input_file)
 
     #分割训练集、验证集和测试集
     train, val, test = utils.data_process(X_drug, X_target, y, 
@@ -149,7 +149,7 @@ def main(config):
     model.train(train, val, test)
 
     #保存模型
-    model.save_model('/y/home/zyw/tmp/DeepPurpose/save_model/')
+    model.save_model(config.output_dir)
 
 
 if __name__ == "__main__":

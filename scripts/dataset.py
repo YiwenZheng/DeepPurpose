@@ -260,7 +260,7 @@ def process_BindingDB(path = None, df = None, y = 'Kd', binary = False, convert_
 	return df_want.SMILES.values, df_want['Target Sequence'].values, np.array(y)
 
 
-def load_process_DAVIS(path = './data', binary = False, convert_to_log = True, threshold = 30):
+def load_process_DAVIS(path = './data/DAVIS', binary = False, convert_to_log = True, threshold = 30):
 	print('Beginning Processing...')
 
 	#if not os.path.exists(path):
@@ -273,12 +273,12 @@ def load_process_DAVIS(path = './data', binary = False, convert_to_log = True, t
 	#with ZipFile(saved_path, 'r') as zip:
 	    #zip.extractall(path = path)
 
-	affinity = pd.read_csv(path + '/DAVIS/affinity.txt', header = None, sep = ' ')
+	affinity = pd.read_csv(path + '/affinity.txt', header = None, sep = ' ')
 
-	with open(path + '/DAVIS/target_seq.txt') as f:
+	with open(path + '/target_seq.txt') as f:
 		target = json.load(f)
 
-	with open(path + '/DAVIS/SMILES.txt') as f:
+	with open(path + '/SMILES.txt') as f:
 		drug = json.load(f)
 
 	target = list(target.values())
@@ -307,7 +307,7 @@ def load_process_DAVIS(path = './data', binary = False, convert_to_log = True, t
 	return np.array(SMILES), np.array(Target_seq), np.array(y)
 
 
-def load_process_KIBA(path = './data', binary = False, threshold = 9):
+def load_process_KIBA(path = './data/KIBA', binary = False, threshold = 9):
 	print('Beginning Processing...')
 
 	#if not os.path.exists(path):
@@ -320,13 +320,13 @@ def load_process_KIBA(path = './data', binary = False, threshold = 9):
 	#with ZipFile(saved_path, 'r') as zip:
 	    #zip.extractall(path = path)
 
-	affinity = pd.read_csv(path + '/KIBA/affinity.txt', header = None, sep = '\t')
+	affinity = pd.read_csv(path + '/affinity.txt', header = None, sep = '\t')
 	affinity = affinity.fillna(-1)
 
-	with open(path + '/KIBA/target_seq.txt') as f:
+	with open(path + '/target_seq.txt') as f:
 		target = json.load(f)
 
-	with open(path + '/KIBA/SMILES.txt') as f:
+	with open(path + '/SMILES.txt') as f:
 		drug = json.load(f)
 
 	target = list(target.values())
@@ -353,6 +353,44 @@ def load_process_KIBA(path = './data', binary = False, threshold = 9):
 
 	print('Done!')
 	return np.array(SMILES), np.array(Target_seq), np.array(y)
+
+
+def load_process(path = './data/DAVIS', binary = False, convert_to_log = True, threshold = 30):
+	print('Beginning Processing...')
+
+	affinity = pd.read_csv(path + '/affinity.txt', header = None, sep = ' ')
+
+	with open(path + '/target_seq.txt') as f:
+		target = json.load(f)
+
+	with open(path + '/SMILES.txt') as f:
+		drug = json.load(f)
+
+	target = list(target.values())
+	drug = list(drug.values())
+
+	SMILES = []
+	Target_seq = []
+	y = []
+
+	for i in range(len(drug)):
+		for j in range(len(target)):
+			SMILES.append(drug[i])
+			Target_seq.append(target[j])
+			y.append(affinity.values[i, j])
+
+	if binary:
+		print('Default binary threshold for the binding affinity scores are 30, you can adjust it by using the "threshold" parameter')
+		y = [1 if i else 0 for i in np.array(y) < threshold]
+	else:
+		if convert_to_log:
+			print('Default set to logspace (nM -> p) for easier regression')
+			y = convert_y_unit(np.array(y), 'nM', 'p')
+		else:
+			y = y
+	print('Done!')
+	return np.array(SMILES), np.array(Target_seq), np.array(y)
+
 
 def load_AID1706_SARS_CoV_3CL(path = './data', binary = True, threshold = 15, balanced = True, oversample_num = 30, seed = 1):
 	print('Beginning Processing...')
