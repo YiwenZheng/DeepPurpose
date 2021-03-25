@@ -23,7 +23,8 @@ from prettytable import PrettyTable
 
 import os
 
-from utils import convert_y_unit, data_process_loader_Property_Prediction, mpnn_collate_func
+from utils import convert_y_unit, data_process, data_process_loader_Property_Prediction,\
+	download_pretrained_model, load_dict, mpnn_collate_func, prauc_curve, roc_curve, save_dict
 from model_helper import Embeddings, Encoder_MultipleLayers
 from encoders import CNN, CNN_RNN, MLP, MPNN, Transformer
 
@@ -186,7 +187,7 @@ class Property_Prediction:
 		elif drug_encoding == 'CNN_RNN':
 			self.model_drug = CNN_RNN('drug', **config)
 		elif drug_encoding == 'Transformer':
-			self.model_drug = Transformer('drug', config)
+			self.model_drug = Transformer('drug', **config)
 		elif drug_encoding == 'MPNN':
 			self.model_drug = MPNN(config['hidden_dim_drug'], config['mpnn_depth'])
 		else:
