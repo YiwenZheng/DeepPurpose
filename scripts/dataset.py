@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
-sys.path.append("..")
-
 import pandas as pd
 import numpy as np
 import wget
 from zipfile import ZipFile
-from scripts.utils import convert_y_unit, download_unzip
+from utils import convert_y_unit, download_unzip
 import json
 import os
 
@@ -102,12 +99,14 @@ def read_file_compound_property(path):
 		print('Path Not Found, please double check!')
 	X_drug = []
 	X_drug_names = []
+	y = []
 	for aline in file:
 		values = aline.split()
-		X_drug.append(values[1])
 		X_drug_names.append(values[0])
+		X_drug.append(values[1])
+		y.append(values[2])
 	file.close()
-	return np.array(X_drug), np.array(X_drug_names)
+	return np.array(X_drug_names), np.array(X_drug), np.array(y)
 
 def read_file_training_dataset_protein_protein_pairs(path):
 	# a line in the file is target_seq target_seq score
@@ -427,8 +426,8 @@ def load_AID1706_SARS_CoV_3CL(path = './data', binary = True, threshold = 15, ba
 	print('Done!')
 	return np.array(X_drug), target, np.array(y)
 
-def load_HIV(path = './data'):
-	download_unzip('HIV', path, 'hiv.csv')
+def load_HIV(path = './data/HIV'):
+	#download_unzip('HIV', path, 'hiv.csv')
 
 	df = pd.read_csv(os.path.join(path,'HIV.csv'))
 	df = df.iloc[df['smiles'].drop_duplicates(keep = False).index.values]

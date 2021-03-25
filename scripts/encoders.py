@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
-sys.path.append("..")
 
 import torch
 from torch.autograd import Variable
@@ -26,14 +24,14 @@ from prettytable import PrettyTable
 
 import os
 
-from scripts.utils import create_var, index_select_ND
-from scripts.model_helper import Embeddings, Encoder_MultipleLayers
+from utils import create_var, index_select_ND
+from model_helper import Embeddings, Encoder_MultipleLayers
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-class transformer(nn.Sequential):
+class Transformer(nn.Sequential):
 	def __init__(self, encoding, **config):
-		super(transformer, self).__init__()
+		super(Transformer, self).__init__()
 		if encoding == 'drug':
 			self.emb = Embeddings(config['input_dim_drug'], config['transformer_emb_size_drug'], 50, config['transformer_dropout_rate'])
 			self.encoder = Encoder_MultipleLayers(config['transformer_n_layer_drug'], 
