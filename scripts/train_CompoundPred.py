@@ -18,9 +18,11 @@ def train_model(config):
     
     #药物编码器
     drug_encoding = config.drug_encoding
-    
+
     if drug_encoding == "Transformer":
         from Transformer import get_model_config
+    elif drug_encoding == "CNN":
+        from CNN import get_model_config
 
     #分割训练集、验证集和测试集
     train, val, test = utils.data_process(X_drug = X_drug, y = y,\
