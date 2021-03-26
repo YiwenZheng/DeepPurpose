@@ -12,10 +12,10 @@ def get_parser():
         help = "Path to data file")
     parser.add_argument("-o", "--output_dir", type = str, required = True,\
         help = "Directory where model will be saved")
+    parser.add_argument("-r", "--result_folder", type = str, default = "./result/",\
+        required = False, help = "Folder of result") 
     parser.add_argument("-d_e", "--drug_encoding", type = str, default = "Transformer",\
         required = False, help = "Drug encoding")
-    parser.add_argument("--result_folder", type = str, default = "./result/",\
-        required = False, help = "Folder of result") 
     parser.add_argument("--input_dim_drug", type = int, default = 1024,\
         required = False,help = "Dimensionality of input of drug") 
     parser.add_argument("--input_dim_protein", type = int, default = 8420,\
@@ -82,6 +82,7 @@ def get_model_config(config):
             test_every_X_epoch = config.test_every_X_epoch,
             LR = config.LR,
             decay = config.decay,
+            num_workers = config.num_workers,
             transformer_emb_size_drug = config.transformer_emb_size_drug,
             transformer_intermediate_size_drug = config.transformer_intermediate_size_drug,
             transformer_num_attention_heads_drug = config.transformer_num_attention_heads_drug,
@@ -92,8 +93,7 @@ def get_model_config(config):
             transformer_n_layer_target = config.transformer_n_layer_target,
             transformer_dropout_rate = config.transformer_dropout_rate,
             transformer_attention_probs_dropout = config.transformer_attention_probs_dropout,
-            transformer_hidden_dropout_rate = config.transformer_hidden_dropout_rate,
-            num_workers = config.num_workers)
+            transformer_hidden_dropout_rate = config.transformer_hidden_dropout_rate)
     return model_config
 
 if __name__ == "__main__":
