@@ -27,7 +27,7 @@ from prettytable import PrettyTable
 import os
 
 from scripts.utils import convert_y_unit, data_process_loader, data_process_repurpose_virtual_screening, \
-	download_pretrained_model, load_dict, mpnn_collate_func, save_dict
+	download_pretrained_model, load_dict, mpnn_collate_func, prauc_curve, roc_curve, save_dict
 from scripts.encoders import CNN, CNN_RNN, MLP, MPNN, Transformer
 
 from torch.utils.tensorboard import SummaryWriter
@@ -269,7 +269,7 @@ class DBTA:
 		elif drug_encoding == 'CNN_RNN':
 			self.model_drug = CNN_RNN('drug', **config)
 		elif drug_encoding == 'Transformer':
-			self.model_drug = transformer('drug', **config)
+			self.model_drug = Transformer('drug', **config)
 		elif drug_encoding == 'MPNN':
 			self.model_drug = MPNN(config['hidden_dim_drug'], config['mpnn_depth'])
 		else:
@@ -282,7 +282,7 @@ class DBTA:
 		elif target_encoding == 'CNN_RNN':
 			self.model_protein = CNN_RNN('protein', **config)
 		elif target_encoding == 'Transformer':
-			self.model_protein = transformer('protein', **config)
+			self.model_protein = Transformer('protein', **config)
 		else:
 			raise AttributeError('Please use one of the available encoding method.')
 
@@ -556,7 +556,7 @@ class DBTA:
 		'''
 		print('predicting...')
 		info = data_process_loader(df_data.index.values, df_data.Label.values, df_data, **self.config)
-		self.model.to(device)
+		self.model.to(self.device)
 		params = {'batch_size': self.config['batch_size'],
 				'shuffle': False,
 				'num_workers': self.config['num_workers'],
