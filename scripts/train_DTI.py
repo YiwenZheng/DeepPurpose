@@ -60,7 +60,8 @@ def get_parser():
         required = False, help = "Dropout rate of hidden layers in Transformer") 
     parser.add_argument("--mpnn_hidden_size", type = int, default = 50, required = False, \
         help = "Dimensionality of hidden layers in MPNN") 
-    parser.add_argument("--mpnn_depth", type = int, default = 3, required = False, help = "Depth of MPNN") 
+    parser.add_argument("--mpnn_depth", type = int, default = 3, required = False,\
+        help = "Depth of MPNN") 
     parser.add_argument("--cnn_drug_filters", type = list, default = [32,64,96], required = False,\
         help = "Filters of drug in CNN") 
     parser.add_argument("--cnn_drug_kernels", type = list, default = [4,6,8], required = False,\

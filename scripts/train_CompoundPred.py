@@ -23,6 +23,8 @@ def train_model(config):
         from Transformer import get_model_config
     elif drug_encoding == "CNN":
         from CNN import get_model_config
+    elif drug_encoding == "MPNN":
+        from MPNN import get_model_config
 
     #分割训练集、验证集和测试集
     train, val, test = utils.data_process(X_drug = X_drug, y = y,\
