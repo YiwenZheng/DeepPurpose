@@ -637,7 +637,11 @@ https://deeppurpose.readthedocs.io is under active development.
 The output list should be inspected manually by experts before proceeding to the wet-lab validation, and our work is still in active developement with limitations, please do not directly use the drugs.
 
 ## Baseline
-Train a DeepPurpose model with dataset of Davis. Drug encoding and target encoding are both CNN.
+Train a DTI model with dataset of Davis. Drug encoding and target encoding are both CNN.
 ```bash
 ./train.py -i /y/home/zyw/tmp/DeepPurpose/data/DAVIS -o /y/home/zyw/tmp/DeepPurpose/save_model/model_CNN_CNN_Davis -d_e CNN -t_e CNN --train_epoch 100
+```
+Train a CompoundPred model with dataset of HIV. Drug encoding is Transformer. Number of train epochs is 100.
+```bash
+./Transformer.py -i /y/home/zyw/tmp/DeepPurpose/data/HIV -o /y/home/zyw/tmp/DeepPurpose/save_model/CompoundPred_Transformer_HIV --train_epoch 100 -r /y/home/zyw/tmp/DeepPurpose/result/CompoundPred_Transformer_HIV
 ```
