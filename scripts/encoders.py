@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import sys
+sys.path.append("..")
 
 import torch
 from torch.autograd import Variable
@@ -16,16 +18,14 @@ from time import time
 from sklearn.metrics import average_precision_score, f1_score, log_loss, mean_squared_error, roc_auc_score
 from lifelines.utils import concordance_index
 from scipy.stats import pearsonr
-import pickle 
+
 torch.manual_seed(2)
 np.random.seed(3)
-import copy
-from prettytable import PrettyTable
 
 import os
 
-from utils import create_var, index_select_ND
-from model_helper import Embeddings, Encoder_MultipleLayers
+from scripts.utils import create_var, index_select_ND
+from scripts.model_helper import Embeddings, Encoder_MultipleLayers
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 

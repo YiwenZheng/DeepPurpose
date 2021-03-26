@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
+import sys
+sys.path.append("..")
+
 import numpy as np
 import pandas as pd
 from rdkit import Chem, DataStructs
 from rdkit.Chem import AllChem
 from rdkit.Chem.Fingerprints import FingerprintMols
 from rdkit.Chem.rdReducedGraphs import GetErGFingerprint
-from pybiomed_helper import _GetPseudoAAC, CalculateAADipeptideComposition, calcPubChemFingerAll, CalculateConjointTriad, GetQuasiSequenceOrder
+from scripts.pybiomed_helper import _GetPseudoAAC, CalculateAADipeptideComposition, calcPubChemFingerAll, CalculateConjointTriad, GetQuasiSequenceOrder
 import torch
 from torch.utils import data
 from torch.autograd import Variable
@@ -14,7 +17,7 @@ try:
 	from descriptastorus.descriptors import rdDescriptors, rdNormalizedDescriptors
 except:
 	raise ImportError("Please install pip install git+https://github.com/bp-kelley/descriptastorus and pip install pandas-flavor")
-from chemutils import get_mol, atom_features, bond_features, MAX_NB, ATOM_FDIM, BOND_FDIM
+from scripts.chemutils import get_mol, atom_features, bond_features, MAX_NB, ATOM_FDIM, BOND_FDIM
 from subword_nmt.apply_bpe import BPE
 import codecs
 import pickle
@@ -47,7 +50,6 @@ sub_csv = pd.read_csv(f"{this_dir}/ESPF/subword_units_map_uniprot_2000.csv")
 idx2word_p = sub_csv['index'].values
 words2idx_p = dict(zip(idx2word_p, range(0, len(idx2word_p))))
 
-from chemutils import get_mol, atom_features, bond_features, MAX_NB
 
 def create_var(tensor, requires_grad=None):
     if requires_grad is None:

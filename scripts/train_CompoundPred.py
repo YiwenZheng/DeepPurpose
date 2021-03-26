@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import utils, dataset, CompoundPred
-from argparse import ArgumentParser
 import pandas as pd
 
 
@@ -15,11 +14,13 @@ def read_data(input_file):
 def train_model(config):
     #加载数据
     X_drug, y, drug_index = dataset.load_HIV(config.input_file)
+    #X_drug, y = read_data(config.input_file)
     
     #药物编码器
     drug_encoding = config.drug_encoding
+    
     if drug_encoding == "Transformer":
-        from Transformer import this_model_config
+        from Transformer import get_model_config
 
     #分割训练集、验证集和测试集
     train, val, test = utils.data_process(X_drug = X_drug, y = y,\
@@ -27,7 +28,7 @@ def train_model(config):
                                 split_method = 'random', frac = [0.7,0.1,0.2])
 
     #模型配置生成
-    model_config = this_model_config(config)
+    model_config = get_model_config(config)
 
     #模型初始化
     model = CompoundPred.model_initialize(**model_config)

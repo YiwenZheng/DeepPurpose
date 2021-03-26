@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
+import sys
+sys.path.append("..")
+
 import pandas as pd
 import numpy as np
 import wget
 from zipfile import ZipFile
-from utils import convert_y_unit, download_unzip, download_url
+from scripts.utils import convert_y_unit, download_unzip, download_url
 import json
 import os
 
