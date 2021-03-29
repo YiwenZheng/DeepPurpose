@@ -27,6 +27,18 @@ def train_model(config):
         from MPNN import get_model_config
     elif drug_encoding == "CNN_RNN":
         from CNN_RNN import get_model_config
+    elif drug_encoding == "Morgan":
+        from Morgan import get_model_config
+    elif drug_encoding == "Daylight":
+        from Daylight import get_model_config
+    elif drug_encoding == "Pubchem":
+        from Pubchem import get_model_config
+    elif drug_encoding == "rdkit_2d_normalized":
+        from rdkit_2d_normalized import get_model_config
+    elif drug_encoding == "ESPF":
+        from ESPF import get_model_config
+    elif drug_encoding == "ErG":
+        from ErG import get_model_config    
 
     #分割训练集、验证集和测试集
     train, val, test = utils.data_process(X_drug = X_drug, y = y,\
