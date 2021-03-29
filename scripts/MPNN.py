@@ -25,7 +25,7 @@ def get_parser():
     parser.add_argument("--hidden_dim_protein", type = int, default = 256,\
         required = False, help = "Dimensionality of hidden layers of protein") 
     parser.add_argument("--cls_hidden_dims", type = list, default = [1024, 1024, 512],\
-        required = False, help = "Dimensionality of hidden layers of drug in CLS") 
+        required = False, help = "Dimensionality of hidden layers of decoder classifier") 
     parser.add_argument("--batch_size", type = int, default = 256, required = False,\
         help = "Batch size") 
     parser.add_argument("--train_epoch", type = int, default = 10, required = False,\
