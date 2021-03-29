@@ -25,6 +25,8 @@ def train_model(config):
         from CNN import get_model_config
     elif drug_encoding == "MPNN":
         from MPNN import get_model_config
+    elif drug_encoding == "CNN_RNN":
+        from CNN_RNN import get_model_config
 
     #分割训练集、验证集和测试集
     train, val, test = utils.data_process(X_drug = X_drug, y = y,\

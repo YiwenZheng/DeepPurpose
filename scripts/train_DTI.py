@@ -24,7 +24,7 @@ def get_parser():
     parser.add_argument("--hidden_dim_protein", type = int, default = 256, required = False,\
         help = "Dimensionality of hidden layers of protein") 
     parser.add_argument("--cls_hidden_dims", type = list, default = [1024, 1024, 512], required = False,\
-        help = "Dimensionality of hidden layers of drug in CLS") 
+        help = "Dimensionality of hidden layers of decoder classifier") 
     parser.add_argument("--mlp_hidden_dims_drug", type = list, default = [1024, 256, 64], required = False,\
         help = "Dimensionality of hidden layers of drug in MLP") 
     parser.add_argument("--mlp_hidden_dims_target", type = list, default = [1024, 256, 64], required = False,\
