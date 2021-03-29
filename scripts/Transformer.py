@@ -16,9 +16,9 @@ def get_parser():
         required = False, help = "Folder of result") 
     parser.add_argument("-d_e", "--drug_encoding", type = str, default = "Transformer",\
         required = False, help = "Drug encoding")
-    parser.add_argument("--input_dim_drug", type = int, default = 1024,\
+    parser.add_argument("--input_dim_drug", type = int, default = 2586,\
         required = False,help = "Dimensionality of input of drug") 
-    parser.add_argument("--input_dim_protein", type = int, default = 8420,\
+    parser.add_argument("--input_dim_protein", type = int, default = 4114,\
         required = False, help = "Dimensionality of input of protein") 
     parser.add_argument("--hidden_dim_drug", type = int, default = 256,\
         required = False, help = "Dimensionality of hidden layers of drug") 
