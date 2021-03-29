@@ -7,7 +7,6 @@ from torch.utils import data
 from torch.utils.data import SequentialSampler
 from torch import nn 
 
-from tqdm import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
