@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-import sys
-sys.path.append("..")
+#import sys
+#sys.path.append("..")
 
 import torch
 from torch.autograd import Variable
@@ -24,8 +24,8 @@ np.random.seed(3)
 
 import os
 
-from scripts.utils import create_var, index_select_ND
-from scripts.model_helper import Embeddings, Encoder_MultipleLayers
+from utils import create_var, index_select_ND
+from model_helper import Embeddings, Encoder_MultipleLayers
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 

@@ -13,11 +13,11 @@ def read_data(input_file):
 
 def train_model(config):
     #加载数据
-    X_drug, y, drug_index = dataset.load_HIV(config.input_file)
+    X_drug, y, drug_index = dataset.load_HIV(config["input_file"])
     #X_drug, y = read_data(config.input_file)
     
     #药物编码器
-    drug_encoding = config.drug_encoding
+    drug_encoding = config["drug_encoding"]
 
     if drug_encoding == "Transformer":
         from Transformer import get_model_config
@@ -52,7 +52,9 @@ def train_model(config):
     model = CompoundPred.model_initialize(**model_config)
 
     #训练模型
-    model.train(train, val, test)
+    test_result = model.train(train, val, test)
 
     #保存模型
-    model.save_model(config.output_dir)
+    model.save_model(config["output_dir"])
+
+    return test_result

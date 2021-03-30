@@ -414,15 +414,17 @@ class Property_Prediction:
 				auc, auprc, f1, logits = self.test_(testing_generator, model_max, test = True, verbose = verbose)
 				test_table = PrettyTable(["AUROC", "AUPRC", "F1"])
 				test_table.add_row(list(map(float2str, [auc, auprc, f1])))
+				test_result = {"AUROC": auc, "AUPRC": auprc, "F1": f1}
 				if verbose:
-					print('Testing AUROC: ' + str(auc) + ' , AUPRC: ' + str(auprc) + ' , F1: '+str(f1))				
+					print('Testing AUROC: ' + str(auc) + ' , AUPRC: ' + str(auprc) + ' , F1: ' + str(f1))				
 			else:
 				mse, r2, p_val, CI, logits = self.test_(testing_generator, model_max, test = True, verbose = verbose)
 				test_table = PrettyTable(["MSE", "Pearson Correlation", "with p-value", "Concordance Index"])
 				test_table.add_row(list(map(float2str, [mse, r2, p_val, CI])))
+				test_result = {"MSE": mse, "Pearson Correlation": r2, "p_value": p_val, "Concordance Index": CI}
 				if verbose:
-					print('Testing MSE: ' + str(mse) + ' , Pearson Correlation: ' + str(r2) 
-					  + ' with p-value: ' + str(p_val) +' , Concordance Index: '+str(CI))
+					print('Testing MSE: ' + str(mse) + ' , Pearson Correlation: ' + str(r2) \
+					  + ' with p-value: ' + str(p_val) +' , Concordance Index: ' + str(CI))
 			np.save(os.path.join(self.result_folder, str(self.drug_encoding)
 				     + '_logits.npy'), np.array(logits))                
 
@@ -449,7 +451,9 @@ class Property_Prediction:
 			plt.savefig(fig_file)
 		if verbose:
 			print('--- Training Finished ---')
-          
+
+		return test_result
+
 
 	def predict(self, df_data, verbose = True):
 		'''

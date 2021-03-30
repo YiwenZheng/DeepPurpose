@@ -70,31 +70,32 @@ def get_parser():
 
 #模型配置生成
 def get_model_config(config):
-    model_config = generate_config(drug_encoding = config.drug_encoding, 
-            result_folder = config.result_folder,
-            input_dim_drug = config.input_dim_drug, 
-            input_dim_protein = config.input_dim_protein,
-            hidden_dim_drug = config.hidden_dim_drug, 
-            hidden_dim_protein = config.hidden_dim_protein,
-            cls_hidden_dims = config.cls_hidden_dims,
-            batch_size = config.batch_size,
-            train_epoch = config.train_epoch,
-            test_every_X_epoch = config.test_every_X_epoch,
-            LR = config.LR,
-            decay = config.decay,
-            num_workers = config.num_workers,
-            transformer_emb_size_drug = config.transformer_emb_size_drug,
-            transformer_intermediate_size_drug = config.transformer_intermediate_size_drug,
-            transformer_num_attention_heads_drug = config.transformer_num_attention_heads_drug,
-            transformer_n_layer_drug = config.transformer_n_layer_drug,
-            transformer_emb_size_target = config.transformer_emb_size_target,
-            transformer_intermediate_size_target = config.transformer_intermediate_size_target,
-            transformer_num_attention_heads_target = config.transformer_num_attention_heads_target,
-            transformer_n_layer_target = config.transformer_n_layer_target,
-            transformer_dropout_rate = config.transformer_dropout_rate,
-            transformer_attention_probs_dropout = config.transformer_attention_probs_dropout,
-            transformer_hidden_dropout_rate = config.transformer_hidden_dropout_rate)
+    model_config = generate_config(drug_encoding = config["drug_encoding"], 
+            result_folder = config["result_folder"],
+            input_dim_drug = config["input_dim_drug"], 
+            input_dim_protein = config["input_dim_protein"],
+            hidden_dim_drug = config["hidden_dim_drug"], 
+            hidden_dim_protein = config["hidden_dim_protein"],
+            cls_hidden_dims = config["cls_hidden_dims"],
+            batch_size = config["batch_size"],
+            train_epoch = config["train_epoch"],
+            test_every_X_epoch = config["test_every_X_epoch"],
+            LR = config["LR"],
+            decay = config["decay"],
+            num_workers = config["num_workers"],
+            transformer_emb_size_drug = config["transformer_emb_size_drug"],
+            transformer_intermediate_size_drug = config["transformer_intermediate_size_drug"],
+            transformer_num_attention_heads_drug = config["transformer_num_attention_heads_drug"],
+            transformer_n_layer_drug = config["transformer_n_layer_drug"],
+            transformer_emb_size_target = config["transformer_emb_size_target"],
+            transformer_intermediate_size_target = config["transformer_intermediate_size_target"],
+            transformer_num_attention_heads_target = config["transformer_num_attention_heads_target"],
+            transformer_n_layer_target = config["transformer_n_layer_target"],
+            transformer_dropout_rate = config["transformer_dropout_rate"],
+            transformer_attention_probs_dropout = config["transformer_attention_probs_dropout"],
+            transformer_hidden_dropout_rate = config["transformer_hidden_dropout_rate"])
     return model_config
+
 
 if __name__ == "__main__":
     parser = get_parser()
