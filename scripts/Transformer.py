@@ -99,5 +99,6 @@ def get_model_config(config):
 
 if __name__ == "__main__":
     parser = get_parser()
-    config = parser.parse_known_args()[0]
+    tmp = parser.parse_args()
+    config = vars(tmp)  #把参数转换为字典格式
     train_model(config)

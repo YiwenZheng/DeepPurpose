@@ -2,21 +2,34 @@
 
 from hyperopt import hp, fmin, tpe
 from train_CompoundPred import train_model
+from argparse import ArgumentParser
 
 
 def objective(args):
+    parser = ArgumentParser()
+    parser.add_argument("-i", "--input_file", type = str, required = True,\
+        help = "Path to data file")
+    parser.add_argument("-o", "--output_dir", type = str, required = True,\
+        help = "Directory where model will be saved")
+    parser.add_argument("-r", "--result_folder", type = str, default = "./result/",\
+        required = False, help = "Folder of result") 
+    parser.add_argument("-d_e", "--drug_encoding", type = str, default = "Transformer",\
+        required = False, help = "Drug encoding")
+    tmp = parser.parse_args()
+    base_config = vars(tmp)  #把参数转换为字典格式
+
     params = {
-        "input_file": "/y/home/zyw/tmp/DeepPurpose/data/HIV",
-        "output_dir": "/y/home/zyw/tmp/DeepPurpose/save_model/1",
-        "result_folder": "/y/home/zyw/tmp/DeepPurpose/result/1",
-        "drug_encoding": "Transformer",
+        "input_file": base_config["input_file"],
+        "output_dir": base_config["output_dir"],
+        "result_folder": base_config["result_folder"],
+        "drug_encoding": base_config["drug_encoding"],
         "input_dim_drug": args["input_dim_drug"],
         "input_dim_protein": args["input_dim_protein"],
         "hidden_dim_drug": args["hidden_dim_drug"],
         "hidden_dim_protein": args["hidden_dim_protein"],
         "cls_hidden_dims": [1024, 1024, 512],
         "batch_size": args["batch_size"],
-        "train_epoch": 2,
+        "train_epoch": 10,
         "test_every_X_epoch": 20,
         "LR": 0.0001,
         "decay": 0,
@@ -55,5 +68,6 @@ space = {
     "transformer_num_attention_heads_target": hp.choice("transformer_num_attention_heads_target", [2, 4, 8])
 }
 
-best = fmin(fn = objective, space = space, algo = tpe.suggest, max_evals = 2)
+best = fmin(fn = objective, space = space, algo = tpe.suggest, max_evals = 100)
 print(best)
+train_model(best)
